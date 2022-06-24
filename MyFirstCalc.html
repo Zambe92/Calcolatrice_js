@@ -1,0 +1,178 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        #result {
+            color:white;
+            background-color: blue;
+            height: 5rem;
+            text-align: right;
+            font-size: 35px;
+        }
+
+        .plugin {
+            width: 80px;
+            height: 80px;
+            border: solid white;
+            background-color: white;
+            color: blue;
+            border-radius: 23px;
+        }
+
+        .plugin:hover {
+            background-color: blue;
+            color: white;
+            border-radius: 23px;
+        }
+        .operatore:hover {background-color:#F03A47 ;}
+
+        .plugin:hover:active {
+           
+            color: white;
+            border-radius: 23px;
+            
+        }
+
+        .plugin:active {
+
+            transform: translateY(3px);
+        }
+
+        .acuguale {
+            width: 160px;
+            height: 80px;
+        }
+        .acuguale:hover {background-color:#AEA4BF   ;}
+        #calcolatrice {
+            border: solid blue 2px;
+            height: 31rem;
+            width:max-content;
+            margin-top: 3rem;
+background: white;
+background: linear-gradient(0deg, blue 1%, white 1%);
+        }
+
+    </style>
+    <script type="text/javascript">
+
+
+        //MODO2
+        //oppure utilizzo .value che mostra il "value" dell'id relativo.
+        //.value chiede di "prendere" il valore dell id relativo e la funzione eval esegue l espressione o la stringa contenuta al suo interno
+        var pippo="";
+   
+
+        function solve() {
+            let y = eval(pippo);
+            document.getElementById("result").value = y;
+            if(y==undefined){document.getElementById("result").value = ""}
+            // return=y
+            
+           
+        }
+
+
+            function log(){
+                let log=Math.log(pippo);
+                document.getElementById("result").value=log;
+            }
+            
+
+        function root(){
+                let root=Math.sqrt(pippo);
+                document.getElementById("result").value=root;
+            }
+            
+
+        function display(val) {
+            if(val=='*'||val=='+'||val=='-'||val=="/"||val=="**"){
+                document.getElementById('result').value="";
+            }
+            else{document.getElementById('result').value+=val}
+            pippo += val;
+            //pippo=pippo+val
+        }
+    
+
+        function reset() {
+            pippo="";
+            document.getElementById('result').value = "";
+        }
+
+        function espo(){
+
+            
+        }  
+
+        function square(){
+                let square=Math.pow(base,esp);
+                document.getElementById("result").value=square;
+            }
+
+    </script>
+</head>
+
+<body>
+    <div class="container" id="calcolatrice" style="border-radius:30px;background-color:linear-gradient;">
+        <div class="row operazioni">
+            <input type="text" id="result" style="border-top-right-radius:30px;border-top-left-radius:30px">
+        </div>
+        <div class="row numeri d-flex flex-column mt-1 " style="text-align:center">
+            <div class="col d-flex justify-content-center">
+                <input type="button" class="acuguale plugin" value="AC" onClick="reset()">
+                <input type="button" class="plugin operatore" value="DEL" onClick="reset()">
+                <input type="button" class="plugin operatore" value="+" onClick="display('+')">
+            </div>
+            <div class="col d-flex justify-content-center">
+                <input type="button" class="plugin" onClick="display('1')" value="1">
+                <input type="button" class="plugin" onClick="display('2')" value="2">
+                <input type="button" class="plugin" onClick="display('3')" value="3">
+                <input type="button" class="plugin operatore" value="-" onClick="display('-')">
+            </div>
+            <div class="col d-flex justify-content-center">
+                <input type="button" class="plugin" onClick="display('4')" value="4">
+                <input type="button" class="plugin" onClick="display('5')" value="5">
+                <input type="button" class="plugin" onClick="display('6')" value="6">
+                <input type="button" class="plugin operatore" value="x" onClick="display('*')">
+            </div>
+            <div class="col d-flex justify-content-center">
+                <input type="button" class="plugin" onClick="display('7')" value="7">
+                <input type="button" class="plugin" onClick="display('8')" value="8">
+                <input type="button" class="plugin" onClick="display('9')" value="9">
+                <input type="button" class="plugin operatore" value=":" onClick="display('/')">
+            </div>
+            <div class="col d-flex justify-content-center">
+                <input type="button" class="plugin" value="0" onClick="display('0')">
+                <input type="button" class="plugin" value="," onClick="display(',')">
+                <input type="button" class="acuguale plugin operatore" value="=" onClick="solve()">
+            </div>
+        </div>
+        <div class="row bottom d-flex justify-content-center " style="text-align:center">
+            <input type="button" class="plugin  operatore" value="Log" onClick="log()">
+            <input type="button" class="plugin  operatore" value="^" onClick="display('**')">
+            <input type="button" class="plugin  operatore" style="    width: 160px;height: 80px;" value="Root" onClick="root()">
+        </div>
+    </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
